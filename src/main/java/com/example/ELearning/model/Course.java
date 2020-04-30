@@ -1,11 +1,19 @@
 package com.example.ELearning.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Course {
+    @Id
     String id;
     String name;
     String description;
     int duration;
 
+    @ManyToMany(mappedBy = "userCourses")
+    List<User> users = new ArrayList<>();
     public Course() {
 
     }

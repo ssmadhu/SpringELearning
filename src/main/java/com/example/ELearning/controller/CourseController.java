@@ -2,7 +2,9 @@ package com.example.ELearning.controller;
 
 import com.example.ELearning.model.Course;
 import com.example.ELearning.service.CourseService;
+import com.example.ELearning.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourseService courseService;
+    ICourseService courseService;
 
     @RequestMapping(method= RequestMethod.GET)
     public List<Course> getCourses() {
