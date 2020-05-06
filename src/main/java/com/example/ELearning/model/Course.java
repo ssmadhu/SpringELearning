@@ -1,6 +1,7 @@
 package com.example.ELearning.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,10 @@ import java.util.List;
 public class Course {
     @Id
     String id;
+    @NotEmpty(message = "Name is needed")
     String name;
     String description;
+
     int duration;
 
     @ManyToMany(mappedBy = "userCourses")

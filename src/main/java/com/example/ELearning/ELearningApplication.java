@@ -4,6 +4,7 @@ import com.example.ELearning.model.Course;
 import com.example.ELearning.model.User;
 import com.example.ELearning.repository.CourseRepository;
 import com.example.ELearning.repository.UserRepository;
+import io.swagger.annotations.SwaggerDefinition;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @SpringBootApplication
+@SwaggerDefinition
 public class ELearningApplication {
 
 	public static void main(String[] args) {

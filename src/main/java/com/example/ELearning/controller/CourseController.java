@@ -5,8 +5,10 @@ import com.example.ELearning.service.CourseService;
 import com.example.ELearning.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +29,8 @@ public class CourseController {
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    public void addCourse(@RequestBody Course course) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addCourse(@Valid @RequestBody Course course) {
         this.courseService.addCourse(course);
     }
 

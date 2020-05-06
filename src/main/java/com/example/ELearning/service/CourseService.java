@@ -1,5 +1,6 @@
 package com.example.ELearning.service;
 
+import com.example.ELearning.error.CourseNotFoundException;
 import com.example.ELearning.model.Course;
 import com.example.ELearning.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,9 @@ public class CourseService implements ICourseService {
     }
 
     public Course getCourse(String id) {
-        return this.courseRepository.findById(id).get();
+        return this.courseRepository
+                .findById(id)
+                .orElseThrow(() -> new CourseNotFoundException("Course Not Present"));
     }
 
     public void addCourse(Course course) {
@@ -35,4 +38,5 @@ public class CourseService implements ICourseService {
     public void deleteCourse(String id) {
         this.courseRepository.deleteById(id);
     }
+
 }
