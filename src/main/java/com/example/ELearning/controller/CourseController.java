@@ -18,13 +18,18 @@ public class CourseController {
     @Autowired
     ICourseService courseService;
 
-    @RequestMapping(method= RequestMethod.GET)
-    public List<Course> getCourses() {
-        return this.courseService.getCourses();
+//    @RequestMapping(method= RequestMethod.GET)
+//    public List<Course> getCourses() {
+//        return this.courseService.getCourses();
+//    }
+
+    @RequestMapping(method=RequestMethod.GET)
+    public List<Course> getCoursesMatch(@RequestParam(required = false) String name) {
+        return name!= null ? this.courseService.getCoursesMatch(name) : this.courseService.getCourses();
     }
 
     @RequestMapping(method= RequestMethod.GET, value= "/{id}")
-    public Course getCourses(@PathVariable  String id) {
+    public Course getCourse(@PathVariable  String id) {
         return this.courseService.getCourse(id);
     }
 

@@ -21,6 +21,10 @@ public class CourseService implements ICourseService {
        return this.courseRepository.findAll();
     }
 
+    public List<Course> getCoursesMatch(String course){
+        return this.courseRepository.findByNameCont(course);
+    }
+
     public Course getCourse(String id) {
         return this.courseRepository
                 .findById(id)

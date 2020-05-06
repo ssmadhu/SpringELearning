@@ -1,12 +1,10 @@
-package com.example.ELearning.security;
+package com.example.ELearning.config;
 
 
-import com.example.ELearning.service.MyCredentialsUserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,13 +32,17 @@ public class SecureSpring extends WebSecurityConfigurerAdapter {
         logger.info("MyCredentialsUserService"+myCredentialsUserService.toString());
         auth.userDetailsService(myCredentialsUserService)
                 .passwordEncoder(passwordEncoder);
+//        auth.inMemoryAuthentication()
+//                .withUser("smadhu")
+//                .password("smadhu")
+//                .roles("USER");
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/courses").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST,"/courses").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+        http.httpBasic()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/courses").hasRole("USER")
                 .antMatchers (SWAGGER_PATTERNS).permitAll ()
                 .anyRequest().permitAll();
     }
